@@ -2,7 +2,26 @@
 <%- include('partials/head') %>
 
   
-    
+<div class="cotacao">
+    <p>Selecione a paridade de moedas que deseja converter</p>
+    <select name="selectOne" id="selectOne" class="selectOne">
+        <option value="EUR">EURO</option>
+        <option value="USD">DOLAR</option>
+        <option value="BRL">REAL</option>
+        <option value="BTC">BITCOIN</option>
+    </select>
+        <p class="para">Para</p>
+    <select name="selectTwo" id="selectTwo" class="selectTwo">
+        <option value="EUR">EURO</option>
+        <option value="USD">DOLAR</option>
+        <option value="BRL">REAL</option>
+        <option value="BTC">BITCOIN</option>
+    </select>
+    <br>
+    <input type="number" name="quantidade" id="quantidade" min="1" placeholder="quantidade" required>
+    <br>
+    <span id="total">Total (recebe dados via ejs)</span>
+</div>
 
    
 <%- include('partials/footer') %>
