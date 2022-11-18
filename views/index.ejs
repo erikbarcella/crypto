@@ -3,24 +3,31 @@
 
   
 <div class="cotacao">
-    <p>Selecione a paridade de moedas que deseja converter</p>
-    <select name="selectOne" id="selectOne" class="selectOne">
-        <option value="EUR">EURO</option>
-        <option value="USD">DOLAR</option>
-        <option value="BRL">REAL</option>
-        <option value="BTC">BITCOIN</option>
-    </select>
-        <p class="para">Para</p>
-    <select name="selectTwo" id="selectTwo" class="selectTwo">
-        <option value="EUR">EURO</option>
-        <option value="USD">DOLAR</option>
-        <option value="BRL">REAL</option>
-        <option value="BTC">BITCOIN</option>
-    </select>
-    <br>
-    <input type="number" name="quantidade" id="quantidade" min="1" placeholder="quantidade" required>
-    <br>
-    <span id="total">Total (recebe dados via ejs)</span>
+    <form action="cotacao" method="get">
+        <p>Selecione a paridade de moedas que deseja converter</p>
+        <select name="selectOne" id="selectOne" class="selectOne">
+            <option value="EUR">EURO</option>
+            <option value="USD">DOLAR</option>
+            <option value="BRL">REAL</option>
+            <option value="BTC">BITCOIN</option>
+        </select>
+            <p class="para">Para</p>
+        <select name="selectTwo" id="selectTwo" class="selectTwo">
+            <option value="EUR">EURO</option>
+            <option value="USD">DOLAR</option>
+            <option value="BRL">REAL</option>
+            <option value="BTC">BITCOIN</option>
+        </select>
+        <br>
+        
+        <p class="para">Quantidade <input type="number" name="quantidade" id="quantidade" min="1" placeholder="Quantidade" required> 
+        <button type="submit" class="btn1">Calcular</button>
+        </p>
+        <br>
+        <p class="para">Total <input type="number" name="total" id="total" value="" placeholder="Total"></p>
+        
+    </form>
+   <!--  <span id="total">Total (recebe dados via ejs)</span> -->
 </div>
 
    

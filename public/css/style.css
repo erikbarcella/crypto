@@ -98,3 +98,35 @@ footer{
     padding: 0;
 }
 
+#total{
+    text-align: center;
+}
+
+#quantidade{
+    text-align: center;
+}
+
+button{
+    position: relative;
+    border: none;
+    transition: .4s ease-in;
+    z-index: 1;
+}
+
+button::before,
+button::after{
+    position: absolute;
+    content: "";
+    z-index: -1;
+}
+.btn1{
+    border:  #97b2ff;
+    color: #97b2ff;
+    background-color: #212529;
+    border-radius: 10px;
+}
+
+.btn1:hover{
+   
+}
+
