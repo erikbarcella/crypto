@@ -20,14 +20,15 @@
         </select>
         <br>
         
-        <p class="para">Quantidade <input type="number" name="quantidade" id="quantidade" min="1" placeholder="Quantidade" > 
+        <p class="para">Quantidade <input type="number" name="quantidade" id="quantidade" min="1" placeholder="Quantidade" required> 
         <button type="submit" class="btn1">Calcular</button>
         </p>
         <br>
-        <p class="para">Total <input type="number" name="total" id="total" value="" placeholder="Total"></p>
+        <!-- <p class="para">Total <input type="number" name="total" id="total" value="" placeholder="Total"></p> -->
+          <span id="total">Total <%=selectTwo %> </span>
         
     </form>
-   <!--  <span id="total">Total (recebe dados via ejs)</span> -->
+  
 </div>
 
    

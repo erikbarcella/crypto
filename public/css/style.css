@@ -81,6 +81,7 @@ footer{
 
 .cotacao{
     text-align: center;
+    
 }
 
 .selectOne{
@@ -104,6 +105,7 @@ footer{
 
 #quantidade{
     text-align: center;
+    
 }
 
 button{
@@ -127,6 +129,6 @@ button::after{
 }
 
 .btn1:hover{
-   
+   color:  rgb(63,94,251);
 }
 
