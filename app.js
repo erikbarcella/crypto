@@ -11,6 +11,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
 
 let resposta = {};
+let ret = [""];
+let values;
 
 app.get('/', (req,res)=>{
     res.render("index");
@@ -19,15 +21,21 @@ app.get('/', (req,res)=>{
 app.get('/cotacao', async(req,res)=>{
     const{selectOne,selectTwo } = req.query;
 
-   await request(`https://economia.awesomeapi.com.br/last/${selectOne+"-"+selectTwo}`, (error,response,body)=>{
+    await request(`https://economia.awesomeapi.com.br/last/${selectOne+"-"+selectTwo}`, (error,response,body)=>{
 
         if(!error && response.statusCode==200){
             resposta = JSON.parse(body);
-            console.log(resposta);
-        }
-        res.render("resultado", {resposta});
-    })
 
+            ret[1] = resposta;
+            let arr = ret.map(function(obj){
+                return Object.keys(obj).map(function(key){
+                    return obj[key] 
+                })
+            })
+            values = arr[1].find(element => element)
+        }
+        res.redirect("resultado", {values});
+    })
     }
 )
 
