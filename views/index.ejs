@@ -1,33 +1,16 @@
-
 <%- include('partials/head') %>
+<%- include('partials/cotacao') %>  
 
-  
-<div class="cotacao">
-    <form action="cotacao" method="get">
-        <p>Selecione a paridade de moedas que deseja converter</p>
-        <select name="selectOne" id="selectOne" class="selectOne">
-            <option value="EUR">EURO</option>
-            <option value="USD" selected>DOLAR</option>
-            <option value="BRL">REAL</option>
-            <option value="BTC">BITCOIN</option>
-        </select>
-            <p class="para">Para</p>
-        <select name="selectTwo" id="selectTwo" class="selectTwo">
-            <option value="EUR">EURO</option>
-            <option value="USD">DOLAR</option>
-            <option value="BRL" selected>REAL</option>
-            <option value="BTC">BITCOIN</option>
-        </select>
-        <br>
         
-        <p class="para">Quantidade <input type="number" name="quantidade" id="quantidade" min="1" placeholder="Quantidade" > 
+        <p class="para">Quantidade 
+            <input type="number" name="quantidade" id="quantidade" min="1" placeholder="Quantidade" value="" required > 
         <button type="submit" class="btn1">Calcular</button>
         </p>
         <br>
-        <p class="para">Total <input type="number" name="total" id="total" value="" placeholder="Total"></p>
+        <p class="para">Preço atual do Dolar R$ <%= values.bid %></p>
         
     </form>
-   <!--  <span id="total">Total (recebe dados via ejs)</span> -->
+
 </div>
 
    
