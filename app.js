@@ -31,8 +31,6 @@ app.get('/', async(req,res)=>{
     })
 })
         
-   
-
 app.get('/cotacao', async(req,res)=>{
     const{selectOne,selectTwo,quantidade } = req.query;
 
