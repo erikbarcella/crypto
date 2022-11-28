@@ -4,7 +4,8 @@
 
 
 body{
-    background-color:black;
+    background: rgb(2,0,36);
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); 
 }
 
 .tracking-in-contract {
@@ -107,6 +108,8 @@ footer:hover{
 .selectOne{
     margin-bottom: 10px;
 
+    
+
 }
 
 .selectTwo{
@@ -174,12 +177,14 @@ button::after{
 }
 
 #nav{
-   background: rgba(33, 37, 41, 0.6);
+   background: rgba(33, 37, 41, 0.6) !important;
    border-radius: 20px;
    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
    backdrop-filter: blur(4.5px);
    -webkit-backdrop-filter: blur(4.5px);
    border: 1px solid rgba(255, 255, 255, 0.062);
+
+  
 }
 
 .assinatura{
@@ -188,6 +193,8 @@ button::after{
 
 .p2{
     margin-top: 10px;
+
+    
 }
 
 select{
@@ -200,3 +207,4 @@ select{
    -webkit-backdrop-filter: blur(4.5px);
    border: 1px solid rgba(255, 255, 255, 0.062);
 }
+
