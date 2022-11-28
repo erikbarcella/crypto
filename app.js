@@ -23,10 +23,10 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(User.authenticate()));
+/* passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.deserializeUser(User.deserializeUser()); */
 
 mongoose.connect("mongodb://localhost/dbCurrency", {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {console.log('Conexão estabelecida com o banco!');})
