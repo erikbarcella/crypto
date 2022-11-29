@@ -23,10 +23,10 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-/* passport.use(new LocalStrategy(User.authenticate()));
+passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser()); */
+passport.deserializeUser(User.deserializeUser());
 
 mongoose.connect("mongodb://localhost/dbCurrency", {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {console.log('Conexão estabelecida com o banco!');})
@@ -80,6 +80,43 @@ app.get('/cotacao', async(req,res)=>{
     })
     }
 )
+
+app.get("/register", (req, res) => {
+    res.render("register");
+});
+
+app.post("/register", (req, res) => {
+    User.register(new User({username: req.body.username}), req.body.password, (err, user) => {
+        if(err){
+            console.log(err);
+            res.render("register");
+        } else {
+            passport.authenticate("local")(req, res, ()=>{
+                res.redirect("/favoritos");
+            });
+        }
+    })
+});
+
+app.get("/login", (req, res) => {
+    res.render("login");
+});
+
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/favoritos",
+    failureRedirect: "/login"
+}));
+
+app.get('/logout', function(req, res, next) {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
+  });
+
+app.get("/favoritos",  isLoggedIn, (req, res) => {
+    res.render("favoritos");
+});
 
 let port = 3000;
 app.listen(port, () =>{

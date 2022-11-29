@@ -82,7 +82,7 @@ footer{
    margin-top: 500px;
    padding: 8px;
    background: rgba(33, 37, 41, 0.6);
-   border-radius: 20px;
+   border-radius: 7px;
    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
    backdrop-filter: blur(4.5px);
    -webkit-backdrop-filter: blur(4.5px);
@@ -99,6 +99,15 @@ footer:hover{
    color: rgb(199, 213, 252);
 }
 
+#nav{
+    background: rgba(33, 37, 41, 0.6) !important;
+    border-radius: 7px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.5px);
+    -webkit-backdrop-filter: blur(4.5px);
+    border: 1px solid rgba(255, 255, 255, 0.062); 
+ }
+
 .cotacao{
     text-align: center;
     padding-top: 50px;
@@ -107,9 +116,6 @@ footer:hover{
 
 .selectOne{
     margin-bottom: 10px;
-
-    
-
 }
 
 .selectTwo{
@@ -176,25 +182,12 @@ button::after{
     font-weight: bold;
 }
 
-#nav{
-   background: rgba(33, 37, 41, 0.6) !important;
-   border-radius: 20px;
-   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-   backdrop-filter: blur(4.5px);
-   -webkit-backdrop-filter: blur(4.5px);
-   border: 1px solid rgba(255, 255, 255, 0.062);
-
-  
-}
-
 .assinatura{
     float: right;
 }
 
 .p2{
     margin-top: 10px;
-
-    
 }
 
 select{
@@ -206,5 +199,18 @@ select{
    backdrop-filter: blur(4.5px);
    -webkit-backdrop-filter: blur(4.5px);
    border: 1px solid rgba(255, 255, 255, 0.062);
+}
+
+.dropdown-menu{
+    background: rgba(33, 37, 41, 0.226) !important;
+    border-radius: 7px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.5px);
+    -webkit-backdrop-filter: blur(4.5px);
+    border: 1px solid rgba(255, 255, 255, 0.062); 
+}
+
+.dropdown-item{
+    color: #c7d5fc;
 }
 
