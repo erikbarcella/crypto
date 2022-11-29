@@ -68,7 +68,6 @@ body{
 
 .nav-link{
     color: rgb(151,178,255);
-    /* color: rgb(77, 123, 250); */
 }
 
 .main{
@@ -92,7 +91,6 @@ footer{
    left: 0;
    bottom: 0;
    width: 100%;
-   
 }
 
 footer:hover{
@@ -106,12 +104,11 @@ footer:hover{
     backdrop-filter: blur(4.5px);
     -webkit-backdrop-filter: blur(4.5px);
     border: 1px solid rgba(255, 255, 255, 0.062); 
- }
+}
 
 .cotacao{
     text-align: center;
-    padding-top: 50px;
-    
+    padding-top: 50px;   
 }
 
 .selectOne{
@@ -214,3 +211,10 @@ select{
     color: #c7d5fc;
 }
 
+.btn2{
+    margin-top: 10px;
+}
+
+.register{
+    text-align: center;
+}

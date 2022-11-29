@@ -75,7 +75,6 @@ app.get('/cotacao', async(req,res)=>{
                 })
             })
             values = arr[1].find(element => element)
-            
         }
         console.log(values);
         res.render('resultado', {values,quantidade,selectTwo,selectOne});
