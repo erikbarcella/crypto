@@ -10,6 +10,10 @@
             <p class="para p1 p2">Valor total de <%= quantidade %>  <%=selectOne %>  para <%= selectTwo %> <%= values.bid*quantidade%></p>
             <% } %>
     </form>
+    
+    <form action="/cotacoes/<%=selectOne+"-"+selectTwo%>" method="post">
+        <button class="btn1">Adicionar à minha lista</button>
+    </form>  
   
 </div>
 

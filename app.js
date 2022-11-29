@@ -75,11 +75,18 @@ app.get('/cotacao', async(req,res)=>{
                 })
             })
             values = arr[1].find(element => element)
+            
         }
+        console.log(values);
         res.render('resultado', {values,quantidade,selectTwo,selectOne});
     })
     }
 )
+
+app.post("/cotacoes/:id", async(req,res)=>{
+    const {id}=req.params;
+    await console.log("cheguei aqui"+id);
+})
 
 app.get("/register", (req, res) => {
     res.render("register");
@@ -114,9 +121,10 @@ app.get('/logout', function(req, res, next) {
     });
   });
 
-app.get("/favoritos",  isLoggedIn, (req, res) => {
+app.get("/cotacoes",  isLoggedIn, (req, res) => {
     res.render("favoritos");
 });
+
 
 let port = 3000;
 app.listen(port, () =>{
