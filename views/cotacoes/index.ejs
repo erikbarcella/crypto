@@ -1,0 +1,9 @@
+<%- include('../partials/head') %>
+<% if(cotacoes.length > 0) { %>
+    <% for(cotacao of cotacoes) {  %>
+        <a href="/cotacoes/<%= cotacao.paridade %>"><p class="titulo"><%= cotacao.paridade %></p></a>
+    <% } %>
+<% } else { %>
+    <h3>Sua lista está vazia.</h3>
+<% } %>
+<%- include('../partials/footer') %>

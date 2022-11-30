@@ -1,10 +1,10 @@
 <%- include('partials/head') %>
 <form action="/register" method="post" class="register">
-    <h2>Registro</h2>
-    <input type="text" name="username" placeholder="username">
-    
-    <input type="password" name="password" placeholder="password">
-    <button>Enviar</button>
+    <h2 class="txt">Cadastro</h2>
+    <label class="input txt" >Nome de usuario <input type="text" name="username" placeholder="username"> </label>
+    <br>
+    <label class="input txt">Senha: <input type="password" name="password" placeholder="password"></label>
+    <button class="btn1">Enviar</button>
 </form>
 <br>
 <%- include('partials/footer') %>

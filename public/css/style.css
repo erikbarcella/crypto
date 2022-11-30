@@ -218,3 +218,13 @@ select{
 .register{
     text-align: center;
 }
+
+.txt{
+    color: rgb(199, 213, 252);
+}
+
+.input{
+    text-align: center;
+    margin-top: 10px;
+   
+}

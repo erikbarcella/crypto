@@ -7,6 +7,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const expressSession = require("express-session");
 const User = require('./models/user');
+const Currency = require('./models/currency');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -41,7 +42,8 @@ const isLoggedIn = (req, res, next) => {
 
 let resposta = {};
 let ret = [""];
-let values;
+let values
+let idUser;
 
 app.get('/', async(req,res)=>{
 
@@ -76,15 +78,31 @@ app.get('/cotacao', async(req,res)=>{
             })
             values = arr[1].find(element => element)
         }
-        console.log(values);
         res.render('resultado', {values,quantidade,selectTwo,selectOne});
     })
     }
 )
 
-app.post("/cotacoes/:id", async(req,res)=>{
+app.get("/cotacoes",  isLoggedIn, async (req, res) => {
+    idUser=req.user.id;
+    const cotacoes = await Currency.find({userId: idUser});
+    res.render("cotacoes/index", {cotacoes});
+});
+
+app.post("/cotacoes/:id",isLoggedIn, async(req,res)=>{
     const {id}=req.params;
-    await console.log("cheguei aqui"+id);
+   
+    //verificacao senao existe no bd paridade ja antes de salvar uma nova
+   let currencyLocated = await Currency.find({paridade: id})
+   if (currencyLocated.length == 0){
+        const newCurrency= new Currency({paridade: id, userId: idUser });
+        await newCurrency.save();
+        console.log("Cotacao salva!" + newCurrency);
+   } else{
+        console.log("Cotacao já esta na lista de favoritos")
+   }
+
+    res.redirect('/')
 })
 
 app.get("/register", (req, res) => {
@@ -98,7 +116,7 @@ app.post("/register", (req, res) => {
             res.render("register");
         } else {
             passport.authenticate("local")(req, res, ()=>{
-                res.redirect("/favoritos");
+                res.redirect("/cotacoes");
             });
         }
     })
@@ -109,7 +127,7 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", passport.authenticate("local", {
-    successRedirect: "/favoritos",
+    successRedirect: "/cotacoes",
     failureRedirect: "/login"
 }));
 
@@ -119,11 +137,6 @@ app.get('/logout', function(req, res, next) {
       res.redirect('/');
     });
   });
-
-app.get("/cotacoes",  isLoggedIn, (req, res) => {
-    res.render("favoritos");
-});
-
 
 let port = 3000;
 app.listen(port, () =>{
