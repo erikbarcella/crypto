@@ -1,0 +1,17 @@
+<%- include('../partials/head') %>
+
+<p class="para">Quantidade <input type="number" name="quantidade" id="quantidade" min="1" placeholder="Quantidade" required > 
+    <button type="submit" class="btn1">Calcular</button>
+    </p>
+    <br>
+    <p class="para p1">Preço atual de 1 <%=selectOne %> para <%= selectTwo %> <%= values.bid%></p>
+    <% if (quantidade>1) { %>
+        <p class="para p1 p2">Valor total de <%= quantidade %>  <%=selectOne %>  para <%= selectTwo %> <%= values.bid*quantidade%></p>
+        <% } %>
+</form>
+
+<form action="/cotacoes/<%=selectOne+"-"+selectTwo%>" method="post">
+    <button class="btn1 btn2">Adicionar à minha lista</button>
+</form> 
+
+<%- include('../partials/footer') %>

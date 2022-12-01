@@ -29,7 +29,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-mongoose.connect("mongodb://localhost/dbCurrency", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb://0.0.0.0/dbCurrency", {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {console.log('Conexão estabelecida com o banco!');})
     .catch(err => {console.log("Erro ao conectar com o banco:" + err);});
 
@@ -101,8 +101,16 @@ app.post("/cotacoes/:id",isLoggedIn, async(req,res)=>{
    } else{
         console.log("Cotacao já esta na lista de favoritos")
    }
-
     res.redirect('/')
+})
+
+app.get("/cotacoes/:id",isLoggedIn, async(req,res)=>{
+    const {id} = req.params;  
+    const currency = await Currency.find({paridade: id, userId: idUser });
+    //implementar busca da api 
+
+    res.render("cotacoes/show",{currency});
+
 })
 
 app.get("/register", (req, res) => {
