@@ -217,6 +217,7 @@ select{
 
 .register{
     text-align: center;
+    margin-top: 100px;
 }
 
 .txt{
@@ -226,5 +227,50 @@ select{
 .input{
     text-align: center;
     margin-top: 10px;
-   
 }
+
+.fav{
+    font-size: large;
+    color: rgb(35, 35, 53);
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+    width: 25%;
+    margin: 0 auto;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+a{
+    text-decoration: none;
+}
+.link{
+    text-align:center;
+    color: rgb(35, 35, 53);
+}
+
+.link:hover{
+    color: rgb(151,178,255);
+}
+
+.item{
+    margin-top: 13px;
+}
+
+.p3{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.p4{
+    font-size: large;
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    font-weight: bold;
+    margin-top: 10px;
+    color: rgb(35, 35, 53);
+}
+

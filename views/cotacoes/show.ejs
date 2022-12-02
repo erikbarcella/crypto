@@ -2,9 +2,8 @@
 <link rel="stylesheet" href="../../css/style.css">
 
 
-<div>
-    <p>Valor atual de <%= paridade %> <%= values.bid %> </p>
-
+<div class="para p3">
+    <p class="p4">Valor atual de <%= valores.name %> <%= valores.bid %> </p>
     <form id="f" action="/cotacoes/<%=paridade%>?_method=DELETE" method="post">
         <button class="btn1 btn2" type="button" onclick="confirm('Tem certeza que deseja remover da lista <%=paridade%>?') ? document.getElementById('f').submit() : false">Remover da minha lista</button>
     </form>

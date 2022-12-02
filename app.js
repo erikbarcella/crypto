@@ -20,7 +20,7 @@ app.use(methodOverride('_method'));
 app.use(expressSession({
     secret: "meu_segredo...",
     resave: false,
-    saveUninitiaded: false
+    saveUninitialized: false
 }));
 
 app.use(passport.initialize());
@@ -94,12 +94,11 @@ app.get("/cotacoes",  isLoggedIn, async (req, res) => {
 app.post("/cotacoes/:id",isLoggedIn, async(req,res)=>{
     const {id}=req.params;
    
-    //verificacao senao existe no bd paridade ja antes de salvar uma nova
    let currencyLocated = await Currency.find({paridade: id})
    if (currencyLocated.length == 0){
         const newCurrency= new Currency({paridade: id, userId: idUser });
         await newCurrency.save();
-        console.log("Cotacao salva!" + newCurrency);
+        console.log("Cotacao salva " + newCurrency);
    } else{
         console.log("Cotacao já esta na lista de favoritos")
    }
@@ -109,23 +108,37 @@ app.post("/cotacoes/:id",isLoggedIn, async(req,res)=>{
 app.get("/cotacoes/:id",isLoggedIn, async(req,res)=>{
     const {id} = req.params;  
     const currency = await Currency.find({paridade: id, userId: idUser });
+    let resp = {};
+    let r = [""];
+    let valores;
     //implementar busca da api
     await request(`https://economia.awesomeapi.com.br/last/${currency[0].paridade}`, (error,response,body)=>{
 
         if(!error && response.statusCode==200){
-            resposta = JSON.parse(body);
-            ret[1] = resposta;
-            let arr = ret.map(function(obj){
+            resp = JSON.parse(body);
+            r[1] = resp;
+            let arr = r.map(function(obj){
                 return Object.keys(obj).map(function(key){
                     return obj[key] 
                 })
             })
-            values = arr[1].find(element => element)
+            valores = arr[1].find(element => element)
         }
         let paridade = currency[0].paridade;
-        res.render("cotacoes/show",{values,paridade});
+        res.render("cotacoes/show",{valores,paridade});
     })
     
+})
+
+app.delete("/cotacoes/:id", async (req,res)=>{
+    const {id} = req.params;
+    const currencyId = await Currency.find({paridade: id, userId: idUser });
+    if(await Currency.findByIdAndDelete(currencyId)){
+        console.log("excluido do banco com sucesso  "+ id);
+        res.redirect('/');
+    } else{
+        console.log("erro ao delatar do banco ")
+    }
 })
 
 app.get("/register", (req, res) => {
@@ -160,19 +173,6 @@ app.get('/logout', function(req, res, next) {
       res.redirect('/');
     });
 });
-
-app.delete("/cotacoes/:id", async (req,res)=>{
-    const {id} = req.params;
-    const currencyId = await Currency.find({paridade: id, userId: idUser });
-    if(await Currency.findByIdAndDelete(currencyId)){
-        console.log("excluido do banco com sucesso")
-        res.redirect('/');
-    } else{
-        console.log("erro ao delatar do banco ")
-    }
-    
-
-})
 
 let port = 3000;
 app.listen(port, () =>{

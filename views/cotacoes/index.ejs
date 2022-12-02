@@ -1,7 +1,9 @@
 <%- include('../partials/head') %>
 <% if(cotacoes.length > 0) { %>
     <% for(cotacao of cotacoes) {  %>
-        <a href="/cotacoes/<%= cotacao.paridade %>"><p class="titulo"><%= cotacao.paridade %></p></a>
+    <div class="fav para ">
+        <a class="link" href="/cotacoes/<%= cotacao.paridade %>"><p class="item"><%= cotacao.paridade %></p> </a>
+    </div>
     <% } %>
 <% } else { %>
     <h3>Sua lista está vazia.</h3>
