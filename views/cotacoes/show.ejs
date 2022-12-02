@@ -1,17 +1,12 @@
-<%- include('../partials/head') %>
+<%-include('../partials/head')%>
+<link rel="stylesheet" href="../../css/style.css">
 
-<p class="para">Quantidade <input type="number" name="quantidade" id="quantidade" min="1" placeholder="Quantidade" required > 
-    <button type="submit" class="btn1">Calcular</button>
-    </p>
-    <br>
-    <p class="para p1">Preço atual de 1 <%=selectOne %> para <%= selectTwo %> <%= values.bid%></p>
-    <% if (quantidade>1) { %>
-        <p class="para p1 p2">Valor total de <%= quantidade %>  <%=selectOne %>  para <%= selectTwo %> <%= values.bid*quantidade%></p>
-        <% } %>
-</form>
 
-<form action="/cotacoes/<%=selectOne+"-"+selectTwo%>" method="post">
-    <button class="btn1 btn2">Adicionar à minha lista</button>
-</form> 
+<div>
+    <p>Valor atual de <%= paridade %> <%= values.bid %> </p>
 
-<%- include('../partials/footer') %>
+    <form id="f" action="/cotacoes/<%=paridade%>?_method=DELETE" method="post">
+        <button class="btn1 btn2" type="button" onclick="confirm('Tem certeza que deseja remover da lista <%=paridade%>?') ? document.getElementById('f').submit() : false">Remover da minha lista</button>
+    </form>
+</div>
+<%-include('../partials/footer')%>

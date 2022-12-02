@@ -8,12 +8,14 @@ const LocalStrategy = require("passport-local");
 const expressSession = require("express-session");
 const User = require('./models/user');
 const Currency = require('./models/currency');
+const methodOverride = require('method-override');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 
 app.use(expressSession({
     secret: "meu_segredo...",
@@ -107,10 +109,23 @@ app.post("/cotacoes/:id",isLoggedIn, async(req,res)=>{
 app.get("/cotacoes/:id",isLoggedIn, async(req,res)=>{
     const {id} = req.params;  
     const currency = await Currency.find({paridade: id, userId: idUser });
-    //implementar busca da api 
+    //implementar busca da api
+    await request(`https://economia.awesomeapi.com.br/last/${currency[0].paridade}`, (error,response,body)=>{
 
-    res.render("cotacoes/show",{currency});
-
+        if(!error && response.statusCode==200){
+            resposta = JSON.parse(body);
+            ret[1] = resposta;
+            let arr = ret.map(function(obj){
+                return Object.keys(obj).map(function(key){
+                    return obj[key] 
+                })
+            })
+            values = arr[1].find(element => element)
+        }
+        let paridade = currency[0].paridade;
+        res.render("cotacoes/show",{values,paridade});
+    })
+    
 })
 
 app.get("/register", (req, res) => {
@@ -144,7 +159,20 @@ app.get('/logout', function(req, res, next) {
       if (err) { return next(err); }
       res.redirect('/');
     });
-  });
+});
+
+app.delete("/cotacoes/:id", async (req,res)=>{
+    const {id} = req.params;
+    const currencyId = await Currency.find({paridade: id, userId: idUser });
+    if(await Currency.findByIdAndDelete(currencyId)){
+        console.log("excluido do banco com sucesso")
+        res.redirect('/');
+    } else{
+        console.log("erro ao delatar do banco ")
+    }
+    
+
+})
 
 let port = 3000;
 app.listen(port, () =>{
