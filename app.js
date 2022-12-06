@@ -67,7 +67,6 @@ app.get('/', async(req,res)=>{
         
 app.get('/cotacao', async(req,res)=>{
     const{selectOne,selectTwo,quantidade } = req.query;
-
     await request(`https://economia.awesomeapi.com.br/last/${selectOne+"-"+selectTwo}`, (error,response,body)=>{
 
         if(!error && response.statusCode==200){
@@ -111,7 +110,6 @@ app.get("/cotacoes/:id",isLoggedIn, async(req,res)=>{
     let resp = {};
     let r = [""];
     let valores;
-    //implementar busca da api
     await request(`https://economia.awesomeapi.com.br/last/${currency[0].paridade}`, (error,response,body)=>{
 
         if(!error && response.statusCode==200){
@@ -127,7 +125,6 @@ app.get("/cotacoes/:id",isLoggedIn, async(req,res)=>{
         let paridade = currency[0].paridade;
         res.render("cotacoes/show",{valores,paridade});
     })
-    
 })
 
 app.delete("/cotacoes/:id", async (req,res)=>{

@@ -7,5 +7,8 @@
     <form id="f" action="/cotacoes/<%=paridade%>?_method=DELETE" method="post">
         <button class="btn1 btn2" type="button" onclick="confirm('Tem certeza que deseja remover da lista <%=paridade%>?') ? document.getElementById('f').submit() : false">Remover da minha lista</button>
     </form>
+    <form action="/cotacoes">
+        <button class="btn1 btn2" type="submit">Voltar</button>
+    </form>
 </div>
 <%-include('../partials/footer')%>

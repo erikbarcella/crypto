@@ -12,7 +12,7 @@
     </form>
     
     <form action="/cotacoes/<%=selectOne+"-"+selectTwo%>" method="post">
-        <button class="btn1 btn2">Adicionar à minha lista</button>
+        <button id="add" class="btn1 btn2" onclick="confirm('Tem certeza que deseja adicionar a sua lista <%=values.name%>?') ? document.getElementById('add').submit() : false">Adicionar à minha lista</button>
     </form>  
   
 </div>
