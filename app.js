@@ -9,6 +9,8 @@ const expressSession = require("express-session");
 const User = require('./models/user');
 const Currency = require('./models/currency');
 const methodOverride = require('method-override');
+const connectDatabase = require('./database/db')
+require('dotenv').config();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -31,9 +33,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-mongoose.connect("mongodb://0.0.0.0/dbCurrency", {useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => {console.log('Conexão estabelecida com o banco!');})
-    .catch(err => {console.log("Erro ao conectar com o banco:" + err);});
+
 
 const isLoggedIn = (req, res, next) => {
     if(req.isAuthenticated()){
@@ -132,7 +132,7 @@ app.delete("/cotacoes/:id", async (req,res)=>{
     const currencyId = await Currency.find({paridade: id, userId: idUser });
     if(await Currency.findByIdAndDelete(currencyId)){
         console.log("excluido do banco com sucesso  "+ id);
-        res.redirect('/');
+        res.redirect('/cotacoes');
     } else{
         console.log("erro ao delatar do banco ")
     }
@@ -170,8 +170,8 @@ app.get('/logout', function(req, res, next) {
       res.redirect('/');
     });
 });
+connectDatabase();
 
-let port = 3000;
-app.listen(port, () =>{
-    console.log("Server running on port: "+ port);
+app.listen(process.env.APP_PORT, () =>{
+    console.log("Server running on port: "+ process.env.APP_PORT);
 })
