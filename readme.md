@@ -1,6 +1,6 @@
 # Currency-Converter
 **Conversor de moedas**
-Projeto construido com base na arquitetura MVC, utilizando Node, Express, Mongodb e Ejs
+projeto construido com base na arquitetura MVC, utilizando Node, Express, Mongodb e Ejs
 
  - Criação de lista de favoritos seguindo o padrão RESTful para implantação do Crud
  - Utilizando passport-local para implementação de login/cadastro
